@@ -103,8 +103,8 @@ export class OrdersEffects {
                       `Официант ${order.waiterId} относит заказ на кухню`,
                     );
                     of(order.waiterId)
-                      // .pipe(delay(2* 60 * 1000))
-                      .pipe(delay(10 * 1000))
+                      .pipe(delay(2 * 60 * 1000))
+                      // .pipe(delay(10 * 1000))
                       .pipe(
                         withLatestFrom(this.store.select('orders')),
                         concatMap((waiterAndOrdersState) => {
@@ -128,8 +128,8 @@ export class OrdersEffects {
                           return of(waiterAndOrdersState[0]);
                         }),
                       )
-                      // .pipe(delay(6 * 60 * 1000))
-                      .pipe(delay(10 * 1000))
+                      .pipe(delay(6 * 60 * 1000))
+                      // .pipe(delay(10 * 1000))
                       .pipe(
                         withLatestFrom(this.store.select('orders')),
                         concatMap((waiterAndOrdersState) => {
@@ -153,8 +153,8 @@ export class OrdersEffects {
                           return of(waiterAndOrdersState[0]);
                         }),
                       )
-                      // .pipe(delay(60 * 1000))
-                      .pipe(delay(10 * 1000))
+                      .pipe(delay(60 * 1000))
+                      // .pipe(delay(10 * 1000))
                       .pipe(
                         withLatestFrom(this.store.select('orders')),
                         concatMap((waiterAndOrdersState) => {
@@ -178,8 +178,8 @@ export class OrdersEffects {
                           return of(waiterAndOrdersState[0]);
                         }),
                       )
-                      // .pipe(delay(10 * 60 * 1000))
-                      .pipe(delay(10 * 1000))
+                      .pipe(delay(10 * 60 * 1000))
+                      // .pipe(delay(10 * 1000))
                       .pipe(
                         withLatestFrom(this.store.select('orders')),
                         concatMap((waiterAndOrdersState) => {
@@ -204,8 +204,8 @@ export class OrdersEffects {
                         }),
                       )
                       .pipe(
-                        // delay(2 * 60 * 1000),
-                        delay(10 * 1000),
+                        delay(2 * 60 * 1000),
+                        // delay(10 * 1000),
                         withLatestFrom(this.store.select('orders')),
                       )
                       .subscribe((waiterAndOrdersState) => {
