@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center m-5">Столики</h2>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col">
+      <form [formGroup]="tablesForm" *ngIf="isEditMode"  (ngSubmit)="onSubmit()">
+
+        <div class="row align-items-center"  formGroupName="tables">
+          <div class="col-4 text-center" *ngFor="let Ctrl of controls; let i = index" formArrayName="{{ i }}">
+            <p *ngIf="Ctrl.get('isOccupied')?.value">Столик занят</p>
+            <mat-form-field *ngIf="!Ctrl.get('isOccupied')?.value">
+              <mat-label >Столик № {{Ctrl.get('number')?.value }}</mat-label>
+              <mat-select formControlName="defaultWaiter" >
+                <mat-option *ngFor="let waiter of waitersList" value="{{ waiter._id }}">{{waiter.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+
+        <div class="row align-items-center" >
+          <div class="col text-center">
+            <button type="submit" mat-raised-button color="primary" class="text-center" >Сохранить</button>
+          </div>
+        </div>
+      </form>
+      <hr />
+      <mat-nav-list  >
+        <button mat-list-item (click)="isEditMode=!isEditMode">
+          <span matListItemTitle>
+            {{isEditMode ? 'Скрыть форму' : 'Переназначить столики'}}
+          </span>
+        </button>
+      </mat-nav-list>
+      <hr />
+      <mat-nav-list *ngIf="!isEditMode" >
+        <button mat-list-item *ngFor="let table of tablesList" >
+          <span matListItemTitle>
+            Столик № {{table.number}}
+          </span>
+          <span matListItemLine>
+            Обслуживает официант - {{ getWaiterName(table.defaultWaiter) }}
+          </span>
+          <span matListItemLine>
+            {{ !table.isOccupied ? 'Свободен' : 'Занят' }}
+          </span>
+        </button>
+      </mat-nav-list>
+    </div>
+  </div>
+</div>

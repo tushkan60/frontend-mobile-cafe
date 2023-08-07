@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center m-5">Официанты</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-nav-list >
+        <button mat-list-item *ngFor="let waiter of waitersList" routerLink="/waiters/:{{waiter._id}}" >
+          <span matListItemTitle
+                [class.text-success]="waiter.inShift"
+                [class.text-dark-emphasis]="!waiter.inShift">
+            {{waiter.name}} | {{waiter.inShift ? 'На смене' : 'Не в смене' }}
+          </span>
+
+          <span matListItemLine *ngIf="waiter.inShift"
+                [class.text-success]="waiter.isAvailable"
+                [class.text-danger]="!waiter.isAvailable">
+            {{waiter.isAvailable ? 'Свободен' : 'Занят' }}
+          </span>
+        </button>
+      </mat-nav-list>
+    </div>
+  </div>
+</div>

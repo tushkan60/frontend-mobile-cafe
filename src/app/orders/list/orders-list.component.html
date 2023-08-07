@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center m-5">Заказы</h2>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-6 border-end">
+      <div class="row" >
+        <div class="col" >
+          <button type="submit" mat-raised-button color="primary" class="text-center" routerLink="/orders/:new">Новый заказ</button>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col">
+          <h3>Доступные официанты</h3>
+          <mat-nav-list >
+            <button mat-list-item *ngFor="let waiter of availableWaiters" routerLink="/waiters/:{{waiter._id}}" >
+              <span matListItemTitle>
+            | {{waiter.name}} |
+              </span>
+            </button>
+            <div class="col" *ngIf="availableWaiters.length===0">
+              <h4  class="text-danger">Нет свободных официантов в смене</h4>
+              <button mat-list-item  routerLink="/waiters" >
+                <span matListItemTitle>
+                  Перейти к официантам
+                </span>
+              </button>
+            </div>
+          </mat-nav-list>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <h3>Заказы в работе</h3>
+      <div class="row">
+        <div class="col">
+          <mat-nav-list >
+            <div *ngFor="let order of ordersList; let i =index" >
+              <button mat-list-item routerLink="/orders/:{{order._id}}" *ngIf="!order.isPaid" >
+                <span matListItemTitle >Заказ № {{i+1}}</span>
+                <span matListItemLine >Столик №{{getTableNumber(order.table)}} | {{getWaiterName(order.waiterId)}}</span>
+              </button>
+            </div>
+          </mat-nav-list>
+        </div>
+      </div>
+      <hr />
+      <h3>Оплаченные Заказы</h3>
+      <div class="row">
+        <div class="col">
+          <mat-nav-list >
+            <div *ngFor="let order of ordersList; let i =index" >
+              <button mat-list-item routerLink="/orders/:{{order._id}}" *ngIf="order.isPaid" >
+                <span matListItemTitle >Заказ № {{i+1}}</span>
+                <span matListItemLine >Столик №{{getTableNumber(order.table)}} | {{getWaiterName(order.waiterId)}}</span>
+                <span matListItemLine > Сумма заказа | {{order.totalAmount}} Руб.</span>
+                <span matListItemLine > Сумма чаевых | {{order.tipsAmount}} Руб.</span>
+              </button>
+            </div>
+          </mat-nav-list>
+        </div>
+      </div>
+      <hr />
+
+    </div>
+  </div>
+</div>

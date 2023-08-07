@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center m-5">Блюдо</h2>
+    </div>
+  </div>
+  <form [formGroup]="dishForm">
+    <div class="row align-items-center" >
+      <div class="col-6 text-center ">
+        <mat-form-field>
+          <mat-label >Наименование блюда</mat-label>
+          <input matInput  id="name" formControlName="name" />
+        </mat-form-field>
+      </div>
+      <div class="col-6 text-center">
+        <mat-form-field>
+          <mat-label >Стоимость</mat-label>
+          <input matInput  id="price"  formControlName="price" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row align-items-center" >
+      <div class="col text-center">
+        <button type="submit" mat-raised-button color="primary" class="text-center" (click)="onClick()">Сохранить</button>
+      </div>
+    </div>
+  </form>
+</div>

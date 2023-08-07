@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center m-5">Меню блюд</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-nav-list >
+        <button mat-list-item *ngFor="let dish of dishesList" routerLink="/dishes/:{{dish._id}}">
+          {{dish.name}} | {{dish.price}} руб.
+        </button>
+        <hr />
+      </mat-nav-list>
+      <mat-nav-list >
+        <button mat-list-item  routerLink="/dishes/:new">
+          Добавить блюдо
+        </button>
+        <hr />
+      </mat-nav-list>
+    </div>
+  </div>
+</div>

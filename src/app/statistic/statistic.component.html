@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center m-5">Статистика за текущий день</h2>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-6 text-center" >
+      <button type="button" mat-raised-button color="primary" class="text-center"  (click)="statisticsHandler()">Обновить статистику за сутки</button>
+    </div>
+    <div class="col-6 text-center" >
+      <button type="button" mat-raised-button color="primary" class="text-center" (click)="downloadFile()" *ngIf="statistics">Выгрузить в файл</button>
+    </div>
+
+  </div>
+  <div class="row" *ngIf="statistics">
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <p>Общее количество заказов: {{statistics.dayTotalOrders}}</p>
+          <p>Заработано за день: {{statistics.dayTotalRevenue}}</p>
+          <p>Заработано всего чаевых: {{statistics.dayTotalTips}}</p>
+        </div>
+      </div>
+      <hr/>
+      <hr/>
+      <div class="row">
+        <div class="col">
+          <h3 class="text-center">Официанты в смене</h3>
+          <mat-nav-list >
+            <button mat-list-item *ngFor="let waiter of statistics.waiters">
+          <span matListItemTitle>
+           Официант {{getWaiterName(waiter._id)}}
+          </span>
+              <span matListItemLine>
+            Выполнил заказов: {{waiter.totalOrders}}
+          </span>
+              <span matListItemLine>
+            На общую сумму: {{waiter.totalRevenue}}
+          </span>
+              <span matListItemLine>
+            Рекомендуемое распределение чаевых: {{waiter.dayWaiterTips}}
+          </span>
+              <span matListItemLine>
+            Эффективность: {{waiter.efficiency}}
+          </span>
+            </button>
+          </mat-nav-list>
+        </div>
+      </div>
+      <hr/>
+      <hr/>
+      <div class="row">
+        <div class="col">
+          <h3 class="text-center">Самые заказываемые блюда</h3>
+          <mat-nav-list >
+            <button mat-list-item *ngFor="let dish of statistics.top5Dishes">
+          <span matListItemTitle>
+           Блюдо: {{getDishName(dish.dish)}}
+          </span>
+              <span matListItemLine>
+            Заказали: {{dish.quantity}}
+          </span>
+            </button>
+          </mat-nav-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

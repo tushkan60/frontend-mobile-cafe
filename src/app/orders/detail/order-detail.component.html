@@ -1,0 +1,92 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center m-5">{{!editMode? 'Создать заказ':'Закрыть заказ'}}</h2>
+    </div>
+  </div>
+  <form [formGroup]="orderForm">
+    <div class="row">
+      <div class="col-6 text-center">
+        <mat-form-field >
+          <mat-label>Столик №</mat-label>
+          <mat-select formControlName="table" #tableSelect >
+            <mat-option [value]="table._id" *ngFor="let table of tablesList">{{table.number}}</mat-option>
+          </mat-select>
+          <mat-hint>{{ getWaiterName(tableSelect.value) }}</mat-hint>
+        </mat-form-field>
+
+      </div>
+      <div class="col-6 text-center">
+        <mat-form-field >
+          <mat-label>Официант</mat-label>
+          <mat-select formControlName="waiter" >
+            <mat-option  value="{{waiter._id}}" *ngFor="let waiter of waitersList">{{waiter.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+    </div>
+    <hr/>
+    <div class="row my-2">
+      <div class="col text-center">
+        <h3>Добавить блюдо в заказ</h3>
+        <ng-container formGroupName="dishes">
+          <div class="row align-items-center" *ngFor="let Ctrl of controls; let i = index"
+               formArrayName="{{ i }}">
+            <div class="col-4 text-center mt-3 ">
+              <mat-form-field>
+                <mat-label >Наименование блюда</mat-label>
+                <mat-select formControlName="dish" >
+                  <mat-option  value="{{dish.dish}}" *ngFor="let dish of dishesList">{{dish.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-4 text-center mt-3">
+              <mat-form-field>
+                <mat-label >Количество</mat-label>
+                <input type="quantity" matInput formControlName="quantity"  />
+              </mat-form-field>
+            </div>
+            <div class="col-4 text-center">
+              <button [disabled]="editMode" type="button" mat-raised-button color="warn" class="text-center" (click)="onDeleteDish(i)" >Удалить блюдо</button>
+            </div>
+          </div>
+          <div class="row align-items-center" >
+            <div class="col text-center">
+              <button [disabled]="editMode" type="button" mat-raised-button color="primary" class="text-center" (click)="onAddDish()">Добавить</button>
+            </div>
+            <div class="col text-center">
+              <button [disabled]="editMode" type="button" mat-raised-button color="primary" class="text-center" (click)="onAddRandomDish()">Добавить "что-нибудь"</button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <hr/>
+    <div class="row text-center my-2 align-items-center">
+      <div class="col-6 border-end">
+        <div class="row my-4">
+          <div class="col text-center">
+            <button [disabled]="editMode" type="button" mat-raised-button color="primary" class="text-center"  (click)="onCreate()">Создать заказ</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 border-end">
+        <div class="row my-2">
+          <div class="col text-center">
+            <mat-form-field *ngIf="editMode">
+              <mat-label >Сумма чаевых</mat-label>
+              <input  matInput formControlName="tipsAmount" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center" *ngIf="!payed">
+            <button [disabled]="!editMode" type="button" mat-raised-button color="primary" class="text-center" (click)="onClose()" >Оплатить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <hr/>
+</div>
