@@ -1,21 +1,18 @@
-# Система управления кафе Мобила - Frontend
+# Mobila Cafe Management System - Frontend
 
-Это frontend-часть Системы управления кафе Мобила, созданная с использованием Angular. Он предоставляет пользовательский интерфейс для администраторов ресторана для управления столиками, официантами, блюдами и другими аспектами кафе.
+This is the frontend component of the Mobila Cafe Management System, created using Angular. It provides a user interface for restaurant administrators to manage tables, waitstaff, dishes, and other aspects of the cafe.
 
-## Начало работы
+## Getting Started
 
-1. Клонируйте репозиторий
-2. Установите зависимости: `npm install`
-3. Запустите сервер разработки: `ng serve`
-4. Откройте приложение в вашем браузере: `http://localhost:4200`
+1. Clone the repository.
+2. Install dependencies: `npm install`
+3. Start the development server: `ng serve`
+4. Open the application in your browser: `http://localhost:4200`
 
+## Features
 
-## Возможности
-
-- Просмотр и управление столиками ресторана
-- Просмотр и управление сменами официантов
-- Создание и обновление блюд
-- Просмотр, создание и удаление заказов в ручном и автоматическом режиме
-- Просмотр и выгрузка в файл статистики за текущий день
-
-#
+- View and manage restaurant tables
+- View and manage waitstaff shifts
+- Create and update dishes
+- View, create, and delete orders in both manual and automatic modes
+- View and export daily statistics to a file
